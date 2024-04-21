@@ -1,0 +1,57 @@
+#getdata('time monitor::monitor');
+#?getdata("time_2");
+TIME_1 = 'time_0';
+TIME_2 = 'time_1';
+dis_x = 2.016E-5;
+#宽度 0.272816
+#-12.0934  1000 2000 18.46
+#-12.2555 #-8.64  1600 3200 21.0948
+# 1608nm 1200 2400 20.4791
+E1_0 = getdata(TIME_1,'Ex');  #tm模需要改成Ex
+E1_1 = getdata(TIME_1,'Ey');
+E1 = sqrt(E1_0^2+E1_1^2);
+T1= getdata(TIME_1,'t');
+?T1;
+E1max=max(E1);
+t1 = find(E1,E1max);
+#E0 = pinch(E0,1);
+#E0 = pinch(E0,2);
+t1x = T1(t1);
+#?t1x;
+#plot(T1,E0);
+#-12.2555
+#   1200  22.1311  
+E2_0 = getdata(TIME_2,'Ex');  #tm模需要改成Ex
+E2_1 = getdata(TIME_2,'Ey');
+E2 = sqrt(E2_0^2+E2_1^2);
+T2= getdata(TIME_2,'t');
+?T2;
+E2max=max(E2);
+t2 = find(E2,E2max);
+#E0 = pinch(E0,1);
+#E0 = pinch(E0,2);
+t2x = T2(t2);
+?t2x;
+
+t_cha=t2x-t1x;
+?t_cha;
+
+
+ng = 3E8/(dis_x/t_cha);
+?ng;
+plot(T1,E1,E2);
+
+#T = t1 - t2; 
+#?T;
+
+
+#E3 = getdata('time monitor::monitor_3','Ey');  #tm模需要改成Ex
+#T3= getdata('time monitor::monitor_3','t');
+#E4 = getdata('time monitor::monitor_3_1','Ey');
+#T4= getdata('time monitor::monitor_3_1','t');
+#plot(T3,E4,E2);
+
+
+#E5 = getdata('time monitor::monitor_gw_0','real(E)');  #tm模需要改成Ex
+##T3= getdata('time monitor::monitor_3','t');
+#E6 = getdata('time monitor::monitor_3_1','Ey');
